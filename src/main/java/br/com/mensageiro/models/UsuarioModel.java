@@ -1,9 +1,11 @@
 package br.com.mensageiro.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -14,7 +16,6 @@ import java.util.List;
 public class UsuarioModel {
 
     @Id
-    @Column(name = "id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome_completo",nullable = false)
@@ -23,9 +24,9 @@ public class UsuarioModel {
     @Column(name = "foto_url",nullable = false)
     @NotNull
     private String fotoUrl;
-    @Column(name = "idade",nullable = false)
+    @Column(name = "data_nascimento",nullable = false)
     @NotNull
-    private String idade;
+    private Date dataNascimento;
     @Column(name = "nickname",nullable = false,unique = true)
     @NotNull
     private String nickname;
@@ -36,5 +37,6 @@ public class UsuarioModel {
     @NotNull
     private String senha;
     @OneToMany
+    @JsonIgnore
     private List<UsuarioModel> amigos;
 }
