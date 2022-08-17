@@ -27,6 +27,9 @@ public class UsuarioModel {
     @Column(name = "data_nascimento",nullable = false)
     @NotNull
     private Date dataNascimento;
+    @Column(name = "status",nullable = false)
+    @NotNull
+    private String status;
     @Column(name = "nickname",nullable = false,unique = true)
     @NotNull
     private String nickname;

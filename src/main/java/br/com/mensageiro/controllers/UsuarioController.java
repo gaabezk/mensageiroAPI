@@ -1,12 +1,12 @@
 package br.com.mensageiro.controllers;
 
+import br.com.mensageiro.exceptions.ErrorException;
 import br.com.mensageiro.models.UsuarioModel;
+import br.com.mensageiro.modelsDTO.UsuarioModelDTO;
 import br.com.mensageiro.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +18,12 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<UsuarioModel>> listarTodos() {
+    public ResponseEntity<List<UsuarioModelDTO>> listarTodos() {
         return ResponseEntity.ok(usuarioService.listarTodos());
+    }
+    @PostMapping
+    public ResponseEntity<UsuarioModel> listarTodos(@RequestBody UsuarioModel usuarioModel) throws ErrorException {
+        return ResponseEntity.ok(usuarioService.cadastrar(usuarioModel));
     }
 
 
